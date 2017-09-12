@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}">
+<head>
+    <meta charset="UTF-8">
+    <title>住所</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
+</head>
+<body>
+    {% block content %}
+
+    <form method="post">
+    {% csrf_token %}
+        {{ form.as_p }}
+    <button type="submit">登録</button
+    </form>
+
+    {% endblock %}
+</body>
+</html>
+

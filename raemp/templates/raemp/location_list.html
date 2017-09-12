@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}">
+<head>
+    <meta charset="UTF-8">
+    <title>住所一覧</title>
+</head>
+<body>
+<ul>
+  {% for item in object_list %}
+  <p><a href="">{{ item }}</a></p>
+  {% endfor %}
+</ul>
+</body>
+</html>
