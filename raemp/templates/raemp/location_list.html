@@ -5,10 +5,19 @@
     <title>住所一覧</title>
 </head>
 <body>
+
+    <p>
+        <a href="/raemp/location/create">新規作成</a>
+    </p>
+
 <ul>
-  {% for item in object_list %}
-  <p><a href="">{{ item }}</a></p>
-  {% endfor %}
+    {% for item in object_list %}
+        <p>
+            {{ item }}
+            <a href="/raemp/location/{{item.pk}}/update">変更</a>
+            <a href="/raemp/location/{{item.pk}}/delete">削除</a>
+        </p>
+    {% endfor %}
 </ul>
 </body>
 </html>

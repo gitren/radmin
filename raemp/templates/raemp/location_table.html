@@ -1,0 +1,13 @@
+{% load render_table from django_tables2 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}">
+<head>
+    <link rel="stylesheet" href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}" />
+    <meta charset="UTF-8">
+    <title>住所一覧</title>
+</head>
+<body>
+{% render_table table %}
+</body>
+</html>
