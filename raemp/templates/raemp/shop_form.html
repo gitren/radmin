@@ -1,11 +1,9 @@
 {% extends "raemp/base.html" %}
 
-{% block title %}所在地詳細{% endblock %}
-{% block script %}
-    <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>{% endblock %}
+{% block title %}店舗詳細{% endblock %}
 
 {% block content %}
-    <h1>所在地詳細</h1>
+    <h2>店舗詳細</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
@@ -17,6 +15,11 @@
             <button type="submit" class="ra_btn">
                 登録
             </button>
+            <button
+                    type="button"
+                    onclick='location.href = "/raemp/location/create"'
+                    class="ra_btn"
+            >新規住所</button>
         {% endif %}
         <button
                 type="button"

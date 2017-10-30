@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}基底ページ{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block script %}{% endblock %}
+    <link rel="stylesheet" href="{% static 'raemp/style.css' %}"/>
+    {% block css %}{% endblock %}
+</head>
+<body>
+<div id="topbar">
+    {% block topbar %}
+        <button
+                type="button"
+                onclick='location.href = "/raemp/shop/table"'
+                class="ra_btn"
+        >店舗一覧</button>
+        <button
+                type="button"
+                onclick='location.href = "/raemp/location/table"'
+                class="ra_btn"
+        >所在地一覧</button>
+    {% endblock %}
+</div>
+<div id="content">
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>
+

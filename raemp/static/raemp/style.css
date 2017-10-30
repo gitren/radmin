@@ -1,0 +1,36 @@
+input.ra_btn {
+    WIDTH: 100px;
+    HEIGHT: 50px;
+}
+
+button.ra_btn {
+    /* 文字サイズを1.4emに指定 */
+    font-size: 1.2em;
+
+    /* 文字の太さをboldに指定 */
+    font-weight: bold;
+
+    /* 縦方向に10px、
+     * 横方向に30pxの余白を指定 */
+    padding: 5px 15px;
+
+    /* 背景色を濃い青色に指定 */
+    background-color: #248;
+
+    /* 文字色を白色に指定 */
+    color: #fff;
+
+    /* ボーダーをなくす */
+    border-style: none;
+
+    /* 角丸の指定 */
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+button.ra_btn:hover {
+    /* 透明度を20%に指定 */
+    /* opacity: 0.8; */
+    background-color: #299;
+}
