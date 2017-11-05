@@ -1,0 +1,30 @@
+{% extends "raemp/base.html" %}
+
+{% block title %}個人詳細{% endblock %}
+
+{% block content %}
+    <h2>個人詳細</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if object %}
+            <button type="submit" class="ra_btn">
+                変更
+            </button>
+        {% else %}
+            <button type="submit" class="ra_btn">
+                登録
+            </button>
+            <button
+                    type="button"
+                    onclick='location.href = "/raemp/person/create"'
+                    class="ra_btn"
+            >新規住所</button>
+        {% endif %}
+        <button
+                type="button"
+                onclick="history.go(-1)"
+                class="ra_btn"
+        >キャンセル</button>
+    </form>
+{% endblock %}

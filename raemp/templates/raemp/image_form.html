@@ -1,0 +1,25 @@
+{% extends "raemp/base.html" %}
+
+{% block title %}画像詳細{% endblock %}
+
+{% block content %}
+    <h1>画像詳細</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if object %}
+            <button type="submit" class="ra_btn">
+                変更
+            </button>
+        {% else %}
+            <button type="submit" class="ra_btn">
+                登録
+            </button>
+        {% endif %}
+        <button
+                type="button"
+                onclick="history.go(-1)"
+                class="ra_btn"
+        >キャンセル</button>
+    </form>
+{% endblock %}

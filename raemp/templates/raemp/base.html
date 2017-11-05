@@ -14,14 +14,24 @@
     {% block topbar %}
         <button
                 type="button"
+                onclick='location.href = "/raemp/person/table"'
+                class="menu_btn"
+        >個人一覧</button>
+        <button
+                type="button"
                 onclick='location.href = "/raemp/shop/table"'
-                class="ra_btn"
+                class="menu_btn"
         >店舗一覧</button>
         <button
                 type="button"
                 onclick='location.href = "/raemp/location/table"'
-                class="ra_btn"
+                class="menu_btn"
         >所在地一覧</button>
+        <button
+                type="button"
+                onclick='location.href = "/raemp/image/table"'
+                class="menu_btn"
+        >画像一覧</button>
     {% endblock %}
 </div>
 <div id="content">
