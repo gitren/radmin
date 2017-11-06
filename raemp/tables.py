@@ -50,7 +50,7 @@ class PersonTable(tables.Table):
 
 class ImageTable(tables.Table):
     imagelink = tables.TemplateColumn(
-        '<img src="/media/{{record.image_file}}" />')
+        '<a href="/media/{{record.image_file}}"><img src="{{record.small.url}}" /></a>', verbose_name='画像')
 
     u_check = tables.LinkColumn(
         'raemp:image_update', args=[A('pk')], text='変更', current_app='raemp', verbose_name='変更')

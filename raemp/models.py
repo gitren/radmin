@@ -2,6 +2,8 @@ import uuid
 import os
 from django.db import models
 from datetime import datetime
+from imagekit.models import ImageSpecField, ProcessedImageField
+from imagekit.processors import ResizeToFill
 
 
 # 住所
@@ -93,9 +95,35 @@ class Image(models.Model):
         ('0', '写メ'),
         ('1', '証明書'),
     )
-    image_type = models.CharField(max_length=1, choices=IMAGE_TYPE_CHOICES, default=None)
+    image_type = models.CharField(verbose_name="画像種類", max_length=1, choices=IMAGE_TYPE_CHOICES, default=None)
     # イメージファイル
     image_file = models.ImageField(verbose_name="画像ファイル", upload_to=get_image_path, default=None)
+    # 大サイズ
+    big = ImageSpecField(source="image_file",
+                         processors=[ResizeToFill(1280, 1024)],
+                         format='JPEG'
+                         )
+    # サムネイル
+    thumbnail = ImageSpecField(source='image_file',
+                               processors=[ResizeToFill(250, 250)],
+                               format="JPEG",
+                               options={'quality': 60}
+                               )
+
+    # 中サイズ
+    middle = ImageSpecField(source='image_file',
+                            processors=[ResizeToFill(600, 400)],
+                            format="JPEG",
+                            options={'quality': 75}
+                            )
+
+    # 小サイズ
+    small = ImageSpecField(source='image_file',
+                           processors=[ResizeToFill(75, 75)],
+                           format="JPEG",
+                           options={'quality': 50}
+                           )
+
     # 作成日
     created_at = models.DateField(verbose_name="作成日", default=datetime.now)
     # 更新日
