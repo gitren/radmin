@@ -1,0 +1,29 @@
+{% extends "raemp/base.html" %}
+
+{% block title %}シフト詳細{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>シフト詳細</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+            {{ form.as_p }}
+            {% if object %}
+                <button type="submit" class="ra_btn">
+                    変更
+                </button>
+            {% else %}
+                <button type="submit" class="ra_btn">
+                    登録
+                </button>
+            {% endif %}
+            <button
+                    type="button"
+                    onclick="history.go(-1)"
+                    class="ra_btn"
+            >キャンセル</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

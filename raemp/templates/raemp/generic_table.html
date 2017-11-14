@@ -1,0 +1,20 @@
+{% extends "raemp/base.html" %}
+{% load render_table from django_tables2 %}
+{% load static %}
+
+{% block title %}{{ table_title }}{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'django_tables2/themes/paleblue/css/screen.css' %}" />
+{% endblock %}
+
+{% block content %}
+    <h1>{{ table_title }}</h1>
+    {% render_table table %}
+    <br>
+    <button
+            type="button"
+            onclick='location.href = "{{ create_link }}"'
+            class="ra_btn"
+    >{{ create_button_name }}</button>
+{% endblock %}

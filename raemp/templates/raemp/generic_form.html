@@ -1,0 +1,28 @@
+{% extends "raemp/base.html" %}
+
+{% block title %}{{ form_title }}{% endblock %}
+{% block script %}
+    {{ form_additional_script }}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ form_title }}</h1>
+    <form method="post" {{ form_enc_type }}>
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if object %}
+            <button type="submit" class="ra_btn">
+                変更
+            </button>
+        {% else %}
+            <button type="submit" class="ra_btn">
+                登録
+            </button>
+        {% endif %}
+        <button
+                type="button"
+                onclick="history.go(-1)"
+                class="ra_btn"
+        >キャンセル</button>
+    </form>
+{% endblock %}

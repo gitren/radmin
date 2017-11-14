@@ -63,6 +63,9 @@ class Shop(models.Model):
     # 更新日
     updated_at = models.DateField(verbose_name="更新日", auto_now=True)
 
+    def __str__(self):
+        return self.shop_name_kanji
+
 
 # 店舗従業員
 class Employee(Person):
@@ -72,8 +75,17 @@ class Employee(Person):
 
 # 派遣要員
 class TempStaff(Person):
-    # 自宅住所
-    home_address = models.ForeignKey(Location)
+    # RANK
+    RANK_CHOICES = (
+        ('S', 'Sランク'),
+        ('A', 'Aランク'),
+        ('B', 'Bランク'),
+        ('C', 'Cランク'),
+        ('D', 'Dランク'),
+        ('E', 'Eランク'),
+    )
+    # RANK
+    rank_type = models.CharField(verbose_name="ランク", max_length=1, choices=RANK_CHOICES, default=None)
 
 
 # 写真
@@ -98,11 +110,13 @@ class Image(models.Model):
     image_type = models.CharField(verbose_name="画像種類", max_length=1, choices=IMAGE_TYPE_CHOICES, default=None)
     # イメージファイル
     image_file = models.ImageField(verbose_name="画像ファイル", upload_to=get_image_path, default=None)
+
     # 大サイズ
     big = ImageSpecField(source="image_file",
                          processors=[ResizeToFill(1280, 1024)],
                          format='JPEG'
                          )
+
     # サムネイル
     thumbnail = ImageSpecField(source='image_file',
                                processors=[ResizeToFill(250, 250)],
@@ -124,6 +138,28 @@ class Image(models.Model):
                            options={'quality': 50}
                            )
 
+    # 作成日
+    created_at = models.DateField(verbose_name="作成日", default=datetime.now)
+    # 更新日
+    updated_at = models.DateField(verbose_name="更新日", auto_now=True)
+
+
+# 派遣要員写真
+class TempStaffImage(Image):
+    # 派遣要員ID
+    tempstaff_id = models.ForeignKey(TempStaff)
+
+
+# シフト
+class Shift(models.Model):
+    # 日付
+    date = models.DateField(verbose_name="日付")
+    # シフト対象店舗ID
+    shop_id = models.ForeignKey(Shop, verbose_name="対象店舗")
+    # シフト対象要員ID
+    staff_id = models.ForeignKey(TempStaff, verbose_name="対象要員")
+    # 備考
+    notes = models.TextField(max_length=100)
     # 作成日
     created_at = models.DateField(verbose_name="作成日", default=datetime.now)
     # 更新日

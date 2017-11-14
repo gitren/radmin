@@ -1,10 +1,10 @@
 {% extends "raemp/base.html" %}
 {% load static %}
 
-{% block title %}画像削除{% endblock %}
+{% block title %}{{ delete_confirm_title }}{% endblock %}
 
 {% block content %}
-    <h1>画像削除</h1>
+    <h1>{{ delete_confirm_title }}</h1>
     <body>
     <form action="" method="post">{% csrf_token %}
         <p>削除してよろしいですか？?</p>

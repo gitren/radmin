@@ -68,3 +68,32 @@ class ImageForm(forms.ModelForm):
             'image_type': '畫像種類',
             'image_file': '画像ファイル',
         }
+
+
+# シフトフォーム
+class ShiftForm(forms.ModelForm):
+    """Bootstrapに対応するためのModelForm."""
+
+    class Meta:
+        model = Shift
+        fields = ('shop_id', 'staff_id', 'notes',)
+        widgets = {
+            'notes': forms.Textarea(attrs={
+                'class': 'form-control',
+            }),
+        }
+
+
+# 派遣要員フォーム
+class TempStaffForm(PersonForm):
+    class Meta:
+        model = TempStaff
+
+        fields = ("rank_type",) + PersonForm.Meta.fields
+
+        labels = PersonForm.Meta.labels
+        labels.update(
+            {
+                'rank_type': 'ランク',
+            }
+        )
